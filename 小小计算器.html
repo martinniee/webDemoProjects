@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+<style>
+#o1{
+	width: auto;
+}
+
+</style>
+
+<script>
+	window.onload =  function myPassword(){
+		var autoTime = 5;
+	
+		function time(){
+			
+			if(autoTime==0){
+					// var url = window.location.href();//获取本站网址
+					location.href="https://google.com";
+			}
+			document.getElementById("time").innerHTML = autoTime;
+			autoTime--;
+			
+		}
+
+		var chance = 3;
+		var cnt = chance;
+		alert("您已经进入监控范围!!!");
+		// alert("您输入的密码是:"+psw);
+		// alert(typeof(psw));
+
+		do{
+			psw = prompt("请输入博客密码:");
+			if(!(psw=="zxcvbnm,./")){
+
+				alert("密码输入错误!!!");
+				alert("还剩"+cnt+"机会😂");
+				
+				
+			}else{
+				alert("恭喜你输入正确!👏")
+				setInterval(time,1000);
+				break;
+			}
+			cnt--;
+		}while(cnt>=0)
+		// alert("what the fuck!");
+		if(cnt<0){
+			alert("密码尝试次数完了!!!😢🤦‍♂️");
+			// document.close();
+			history.go(-1);
+		}
+
+		
+	}
+	 
+ 
+</script>
+</head>
+<body>
+<span id="time" style="color: red;" >5</span>秒之后，自动跳转到网页...
+</body>
+</html>

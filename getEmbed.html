@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #inputForGetEmbed::placeholder{
+            color:rgb(240, 28, 28);
+        }
+        #inputForGetEmbed{
+            width: 600px;
+        }
+        #InsertembedDemo{
+            white-space: pre-line;
+        }
+        button{
+            border: 1px solid green;
+            border-radius: 8px;
+            padding: 3px 8px;
+            background: #1d5be49e;
+            color: white;
+        }
+        button:hover{
+            border: 1px solid green;
+            border-radius: 8px;
+            padding: 3px 8px;
+            background: #0f3fa99e;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="InsertembedDemo">
+        <input id="inputForGetEmbed"  type="text" value="" placeholder="Please input a web URL" />
+        <button type="button" onclick="MyGetEmbed()" >Click me!</button>
+    </div>
+
+    <script>
+            // 函数: 根据输入的URL获取对应的embed标签
+            function MyGetEmbed(){
+                // 获取Input表单输入URL
+                var myURL = document.getElementById("inputForGetEmbed");
+                // 获取input表单的内容
+                    insertMyembed(inputText);
+
+            }
+            // 放置embed标签
+             // <embed src="https://mm.edrawsoft.cn/template/334" width="100%" height="500px">
+            function insertMyembed(inputText){
+                // 获取embed标签的字符串形式
+                var str_embed = '<embed src="' + inputText + '" width="100%" height="500px">';
+                // 创建markdown格式表示代码块
+                var str_CodeInmarkdown = "```bash" + "\n" + html2Escape(str_embed) + "\n" + "```" ;
+                //创建embed标签的父标签   对象
+                var embedDiv = document.getElementById("InsertembedDemo");
+                // 加入embed标签嵌入格式 到 div中
+                embedDiv.innerHTML +=str_embed;
+                //追加 markdown格式表示代码块 到 div
+                embedDiv.innerHTML +=str_CodeInmarkdown;
+            }
+            // 函数； HTML标签转义（< -> &lt;）
+            function html2Escape(sHtml) {
+                return sHtml.replace(/[<>&"]/g,function(c){
+                    return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c];
+                });
+            }     
+    </script>
+    
+</body>
+</html>
