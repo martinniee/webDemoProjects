@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSdemo01-获取文章的markdown超链接</title>
+    <style>
+        #get-bnt{
+            background: #0e0e0edb;
+            color: #f5d226;
+            border-radius: 25px;
+            font-size: 17px;
+            padding: 15px 25px;
+            height: 50px;
+
+            display: inline-block;
+            cursor: pointer;
+            text-align: center; 
+            text-decoration: none;
+            outline: none;
+            border: none;
+            box-shadow: 0 9px #999;
+
+        }
+        #get-bnt:active{
+            
+            background-color: #3b3b3b;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+            
+        }
+    </style>
+</head>
+<body>
+    <!-- test tag -->
+    <div class="posttitle">demo01-获取文章的markdown超链接</div> 
+    <!-- click button for obtaining link -->
+    <button id="get-bnt" >click me to obtain markdown link</button>
+
+    <script>
+        /*
+         Defining function for obtaining hyperlink in the form of MD,and then
+         copying the content when clicking related button 
+        */
+    
+            // 定义对象
+            var getLinkButton = document.getElementById("get-bnt");
+            const resultText = document.getElementById("textArea");
+
+            // 获取文章链接url
+            var hyperLink = window.location.href ;
+            //获取post title
+            var titleContent = document.getElementsByClassName("posttitle")[0].innerHTML;
+            // 获取markdown形式的链接,由 post title和 url组成
+            var str_MarkdownLink = "[" + titleContent + "]" + "(" + hyperLink + ")" + "<br/>";
+        // 写入链接字符串到剪切板
+
+        getLinkButton.addEventListener('click', () => {
+        navigator.clipboard.writeText(str_MarkdownLink)
+            .then(() => {
+                if(getLinkButton.innerText !=="Copied"){
+                    // 原始显示在按钮上的文本
+                    const origianlText = getLinkButton.innerText;
+                    getLinkButton.innerText = 'Copied';
+                    setTimeout(() => {
+                        getLinkButton.innerText = origianlText;
+                    },2500);   
+                }
+             })
+            .catch(err => {
+            console.log('Something went wrong', err);
+            })
+        });
+    </script>
+</body>
+</html>
